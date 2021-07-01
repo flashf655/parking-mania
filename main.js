@@ -4,6 +4,11 @@ ctx = canvas.getContext("2d");
 img_width = 300;
 img_height = 100;
 
+
+
+background_image = "parkingLot.jpg";
+greencar_image = "car2.png";
+
 var img_image;
 
 img_x = 100;
@@ -15,10 +20,19 @@ function add() {
 	img_imgTag.src = img_image;  
 }
 
-function uploadimg() {
 
-	ctx.drawImage(img_imgTag, img_x, img_y, img_width, img_height);
+function uploadBackground() {
+    ctx.uploadBackground(background_imgTag, 0, 0, canvas.width, canvas.height);
+
 }
+
+function uploadgreencar() {
+    ctx.uploadgreencar(car_imgTag, car_x, car_y, car_width, car_height);
+}
+
+	
+
+
 
 window.addEventListener("keydown", my_keydown);
 
@@ -26,56 +40,74 @@ function my_keydown(e)
 {
 	keyPressed = e.keyCode;
 	console.log(keyPressed);
+		if(keyPressed == '38')
+		{
+			up();
+			console.log("up");
+		}
 	
-		if((keyPressed >=97 && keyPressed<=122)|| (keyPressed >=65 && keyPressed<=90))
+		if(keyPressed == '40')
+		{
+			down();
+			console.log("down");
+		}
 		
-	else{
-		aplhabetkey();
-		document.getElementById("d1").innerHTML="You pressed Alphabet key";
+		if(keyPressed == '37')
+		{
+			left();
+			console.log("left");
+		}
+	
+		if(keyPressed == '39')
+		{
+			right();
+			console.log("right");
+		}
+		
+		
+}
 
-        if((keyPressed >=48 && keyPressed<=57))
-        numberkey();
-		document.getElementById("d1").innerHTML="You pressed Number key";
-
-        if((keyPressed >=37 && keyPressed<=40))
-        arrowkey();
-		document.getElementById("d1").innerHTML="You pressed Arrow key";
-
-        if((keyPressed =17 / 18 / 20))
-        numberkey();
-		document.getElementById("d1").innerHTML="You pressed Special key";
-
-
-
-        
-
+function up()
+{
+	if(car_y >=0)
+    {
+        car_y = car_y - 10;
+        console.log("When up arrow is pressed,  x = " + car_x + " | y = " +car_y);
+         uploadBackground();
+         uploadgreencar();
 	}
 }
 
-function aplhabetkey()
-{
-	img_image="Alpkey.png";
-	add();
 
-}
-function numberkey()
+function down()
 {
-	img_image="numkey.png";
-	add();
+	if(car_y >=500)
+    {
+        car_y = car_y + 10;
+        console.log("When down arrow is pressed,  x = " + car_x + " | y = " +car_y);
+         uploadBackground();
+         uploadgreencar();
+	}
 }
-function arrowkey()
+
+function left()
 {
-    img_image="Arrkey.png";
-	add();
+	if(car_y >=0)
+    {
+        car_y = car_y - 10;
+        console.log("When left arrow is pressed,  x = " + car_x + " | y = " +car_y);
+         uploadBackground();
+         uploadgreencar();
 }
-function specialkey()
+}
+
+function right()
 {
-	img_image="spkey.png";
-	add();
+	if(car_y >=700)
+    {
+        car_y = car_y + 10;
+        console.log("When right arrow is pressed,  x = " + car_x + " | y = " +car_y);
+         uploadBackground();
+         uploadgreencar();
 }
-function otherkey()
-{
-	img_image="otherkey.png";
-	add();
 }
-	
